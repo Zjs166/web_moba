@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>王者荣耀官网模拟</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <!-- ====== 导航栏 ====== -->
+  <header>
+    <nav>
+      <div class="nav-logo" id="nav-logo" style="display:none;">
+        <img src="img/logo.jpg" alt="logo">
+    </div>
+      <ul class="nav-list">
+        <li>
+          游戏福利
+          <ul class="dropdown">
+            <li>每日签到</li>
+            <li>限时活动</li>
+            <li>英雄碎片兑换</li>
+          </ul>
+        </li>
+        <li>
+          官方爆料
+          <ul class="dropdown">
+            <li>新英雄情报</li>
+            <li>皮肤预览</li>
+            <li>赛事更新</li>
+          </ul>
+        </li>
+        <li>
+          内容中心
+          <ul class="dropdown">
+            <li><a href="content.html">英雄攻略</a></li>
+            <li>视频中心</li>
+            <li>玩家作品</li>
+          </ul>
+        </li>
+        <li>
+          世界观
+          <ul class="dropdown">
+            <li>王者故事</li>
+            <li>阵营介绍</li>
+            <li>英雄背景</li>
+          </ul>
+        </li>
+        <li>
+          支持服务
+          <ul class="dropdown">
+            <li>常见问题</li>
+            <li>联系客服</li>
+            <li><a href="admin.html">管理后台</a></li>
+          </ul>
+        </li>
+        <li class="contact-item">
+          联系我们
+          <div class="contact-popup">
+            <img src="img/下载游戏.webp" alt="联系我们" />
+          </div>
+        </li>
+        <li class="login-btn" id="loginBtn">
+          欢迎登录
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- 登录弹窗 -->
+  <div class="login-popup" id="loginPopup">
+    <div class="login-content">
+      <span class="close-btn" id="closePopup">&times;</span>
+      <h2>欢迎登录</h2>
+      <div class="login-buttons">
+        <a href="login.html" class="login-option wechat">微信登录</a>
+        <a href="login.html" class="login-option qq">QQ登录</a>
+      </div>
+    </div> 
+  </div>
+  
+  <main>
+    <!-- ====== 第一屏：首页 ====== -->
+    <section class="screen first-screen">
+    <div class="video-section">
+          <!--自动播放的背景视频，静音并循环 -->
+      <video src="img/李白.mp4" autoplay muted loop></video>
+    </div>
+
+    <!-- 固定在左侧的二维码下载弹窗 -->
+  <div class="qr-fixed" id="qrFixed">
+    <img src="img/下载.webp" alt="下载二维码">
+    <h3>扫码下载官方游戏</h3>
+  </div>
+
+    <div class="content">
+      <!-- 左侧下载 -->
+      <div class="download-container">
+        <h3>下载官方游戏</h3>
+        <div class="qr-and-buttons">
+          <div class="qr-code">
+            <img src="img/下载.webp" alt="QR" width="100" height="100">
+          </div>
+          <div class="store-buttons">
+            <button>App Store</button>
+            <button>安卓下载</button>
+          </div>
+        </div>
+        <div class="extra-buttons">
+          <button>充值中心</button>
+          <button>回归福利</button>
+        </div>
+      </div>
+
+      <!-- 右侧资讯 -->
+      <div class="news-container">
+        <!-- 轮播图 -->
+        <div class="carousel">
+          <img src="img/1.jpg" class="active">
+          <img src="img/公孙离.jpg">
+          <img src="img/凤凰于飞.jpg">
+          <img src="img/埋骨钱.jpg">
+          <img src="img/李白.jpg">
+        </div>
+
+    <!-- 新闻、公告、活动三类内容切换 -->
+    <div class="news-box">
+      <div class="news-tabs">
+        <button class="active" data-target="news">新闻</button>
+        <button data-target="notice">公告</button>
+        <button data-target="event">活动</button>
+      </div>
+
+      <!-- 新闻 -->
+      <div class="news-content" id="news">
+        <div class="news-item">
+          <span>10-21</span>
+          <a href="content.html">全新英雄CG上线！</a>
+        </div>
+        <div class="news-item"><span>10-19</span>
+          <a href="content.html">王者荣耀S36赛季开启</a>
+        </div>
+        <div class="news-item"><span>10-17</span> 战令福利全面升级！</div>
+      </div>
+
+      <!-- 公告 -->
+      <div class="news-content" id="notice" style="display:none;">
+        <div class="news-item"><span>10-25</span> 【版本优化】修复部分机型闪退问题。</div>
+        <div class="news-item"><span>10-23</span> 【系统公告】排位赛匹配机制优化说明。</div>
+        <div class="news-item"><span>10-20</span> 【维护公告】服务器例行维护通知。</div>
+        <div class="news-item"><span>10-18</span> 【更新公告】新版本内容更新详情。</div>
+      </div>
+
+      <!-- 活动 -->
+      <div class="news-content" id="event" style="display:none;">
+        <div class="news-item"><span>10-28</span> 【限时活动】登录送永久皮肤碎片！</div>
+        <div class="news-item"><span>10-26</span> 【节日活动】万圣节南瓜派对开启。</div>
+        <div class="news-item"><span>10-24</span> 【赛事活动】KPL观赛赢限定头像框。</div>
+        <div class="news-item"><span>10-22</span> 【福利活动】累计签到领英雄体验卡。</div>
+        <div class="news-item"><span>10-19</span> 【充值返利】点券双倍返还限时开启。</div>
+      </div>
+    </div>
+      </div>
+    </div>
+  </section>
+
+<!-- ====== 第二屏：皮肤展示 ====== -->
+<section class="screen second-screen">
+  <div class="skin-showcase">
+
+    <div class="skin-left">
+      <video id="main-video" autoplay muted loop playsinline></video>
+    </div>
+
+    <div class="skin-right">
+      <div class="video-container">
+        <video id="skin-video" controls></video>
+      </div>
+
+      <div class="skin-info">
+        <h2 id="skin-title"></h2>
+        <p id="skin-desc"></p>
+      </div>
+
+      <div class="skin-thumbs">
+        <img src="img/李白.jpg">
+        <img src="img/妲己.jpg">
+        <img src="img/公孙离.jpg">
+        <img src="img/赵云.jpg">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- 右侧导航点 -->
+  <div class="dot-nav">
+    <div class="dot active" onclick="goToScreen(0)"></div>
+    <div class="dot" onclick="goToScreen(1)"></div>
+  </div>
+
+  <!-- 右侧标签 -->
+<div class="side-tag top">KPL赛事</div>
+<div class="side-tag bottom">创作者计划</div>
+
+  </main>
+
+  <footer>
+    <p>© 2025 王者荣耀官方网站模拟版 | 仅供学习与非商业用途</p>
+    <p>
+      <a href="#">隐私政策</a> |
+      <a href="#">用户协议</a> |
+      <a href="#">家长监护</a>
+    </p>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

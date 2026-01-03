@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登录界面 - 王者荣耀</title>
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {
+      font-family: "Microsoft YaHei", sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      background: #000;
+      position: relative;
+    }
+
+    /* 背景视频 */
+    video.bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.8;
+      filter: brightness(0.8);
+    }
+
+    /* 登录容器 */
+    .login-container {
+      display: flex;
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      overflow: hidden;
+      animation: fadeIn 0.6s ease;
+      width: 640px;
+      margin-right: 10%;
+      z-index: 10;
+    }
+
+    /* 左侧二维码 */
+    .qr-box {
+      background: rgba(255, 250, 240, 0.95);
+      padding: 40px 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid #eee;
+    }
+    .qr-box img {
+      width: 160px; height: 160px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .qr-box p { font-size: 14px; color: #555; }
+
+    /* 右侧账号登录 */
+    .login-box {
+      padding: 40px 30px;
+      width: 320px;
+      text-align: center;
+    }
+    .login-box h2 { margin-bottom: 20px; color: #d4b26a; }
+    .login-box input {
+      width: 100%; padding: 12px; margin: 10px 0;
+      border: 1px solid #ccc; border-radius: 6px;
+      font-size: 14px; outline: none;
+      transition: border 0.3s;
+    }
+    .login-box input:focus { border-color: #d4b26a; }
+    .login-box button {
+      width: 100%; padding: 12px; margin-top: 15px;
+      border: none; border-radius: 6px;
+      background: linear-gradient(90deg,#d4b26a,#ffdf80);
+      color: #fff; font-size: 16px; font-weight: bold;
+      cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .login-box button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .extra-links {
+      margin-top: 12px; display: flex; justify-content: space-between;
+      font-size: 13px;
+    }
+    .extra-links a {
+      color: #d4b26a; text-decoration: none; transition: color 0.3s;
+    }
+    .extra-links a:hover { color: #b8962e; text-decoration: underline; }
+
+    /* 登录成功弹窗 */
+    .success-popup {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      background: rgba(255,255,255,0.95);
+      padding: 30px 50px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      text-align: center;
+      opacity: 0;
+      transition: all 0.4s ease;
+      z-index: 1000;
+    }
+    .success-popup.show {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .success-popup h3 {
+      color: #d4b26a;
+      margin-bottom: 10px;
+    }
+    .success-popup p {
+      color: #555;
+      font-size: 14px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <!-- 背景视频 -->
+  <video class="bg-video" autoplay muted loop playsinline>
+    <source src="img/花嫁.mp4" type="video/mp4">
+  </video>
+
+  <!-- 登录容器 -->
+  <div class="login-container">
+    <div class="qr-box">
+      <img src="img/logo.jpg" alt="扫码登录二维码">
+      <p>请使用手机扫码登录</p>
+    </div>
+
+    <div class="login-box">
+      <h2>账号登录</h2>
+      <form onsubmit="return handleLogin(event)">
+        <input type="text" id="username" placeholder="请输入账号" required>
+        <input type="password" id="password" placeholder="请输入密码" required>
+        <button type="submit">登录</button>
+      </form>
+
+      <div class="extra-links">
+        <a href="register.html">注册账号</a>
+        <a href="forget.html">忘记密码？</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 登录成功弹窗 -->
+  <div class="success-popup" id="successPopup">
+    <h3>登录成功！</h3>
+    <p>正在返回首页...</p>
+  </div>
+
+  <script>
+    function handleLogin(e) {
+      e.preventDefault();
+      const popup = document.getElementById('successPopup');
+      popup.classList.add('show');
+
+      // 模拟登录状态保存
+      localStorage.setItem('isLoggedIn', 'true');
+
+      // 1.5秒后跳转回首页
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 1500);
+    }
+  </script>
+</body>
+</html>

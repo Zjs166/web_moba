@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>英雄攻略内容页</title>
+  <style>
+    body {
+      font-family: "Microsoft YaHei", sans-serif;
+      background: #faf7ef;
+      margin: 0;
+      padding: 0;
+    }
+
+    .hero-guide {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin: 20px auto;
+      max-width: 1200px;
+    }
+
+    .hero-guide h2 {
+      text-align: center;
+      color: #d4b26a;
+      margin-bottom: 10px;
+    }
+
+    /* 英雄选择列表 */
+    .hero-list {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin: 15px 0 25px;
+    }
+
+    .hero-list img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 2px solid transparent;
+    }
+
+    .hero-list img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 12px rgba(212,178,106,0.8);
+      border-color: #d4b26a;
+    }
+
+    .guide-layout {
+      display: flex;
+      align-items: stretch;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .guide-info {
+      flex: 1;
+      min-width: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .section {
+      background: #fdf9f0;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .section h3 {
+      margin-bottom: 10px;
+      border-left: 4px solid #d4b26a;
+      padding-left: 8px;
+      color: #444;
+    }
+
+    .toggle-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .toggle-btn {
+      background: #d4b26a;
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-weight: bold;
+    }
+
+    .toggle-btn:hover {
+      background: #b79552;
+    }
+
+    .toggle-btn.active {
+      background: #8a6d3b;
+    }
+
+    .build-content,
+    .relation-content {
+      display: none;
+      margin-top: 12px;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .build-content.active,
+    .relation-content.active {
+      display: block;
+    }
+
+    .items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .items img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+
+    .items img:hover {
+      transform: scale(1.1);
+    }
+
+    .relation-content p {
+      margin: 6px 0;
+      color: #555;
+    }
+
+    .guide-video {
+      flex: 1;
+      min-width: 350px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .video-block {
+      background: #fdf9f0;
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .video-block h4 {
+      color: #8a6d3b;
+      margin-bottom: 6px;
+    }
+
+    .video-block iframe {
+      flex: 1;
+      width: 100%;
+      border-radius: 10px;
+      border: none;
+    }
+
+    .guide-content {
+      display: none;
+    }
+
+    .guide-content.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-5px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .guide-layout {
+        flex-direction: column;
+      }
+      .guide-video iframe {
+        height: 240px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero-guide">
+    <h2>英雄攻略</h2>
+
+    <!-- 英雄选择列表 -->
+    <div class="hero-list">
+      <img src="img/朵莉亚.jpg" alt="朵莉亚" data-hero="duolia">
+      <img src="img/元辅.jpg" alt="孙悟空" data-hero="wukong">
+      <img src="img/沈梦溪.png" alt="貂蝉" data-hero="diaochan">
+      <img src="img/孙权.jpg" alt="孙权" data-hero="sunquan">
+      <img src="img/戈雅.jpg" alt="李白" data-hero="libai">
+      <img src="img/司马懿.jpg" alt="鲁班七号" data-hero="luban">
+      <img src="img/云缨.jpg" alt="云缨" data-hero="yunjin">
+      <img src ="img/亚连.jpg" alt="张飞" data-hero="zhangfei">
+    </div>
+
+    <!-- 朵莉亚 -->
+    <div class="guide-content active" id="duolia">
+      <div class="guide-layout">
+        <div class="guide-info">
+          <div class="section">
+            <h3>推荐出装</h3>
+            <div class="toggle-buttons">
+              <button class="toggle-btn active" data-target="build1">推荐出装一</button>
+              <button class="toggle-btn" data-target="build2">推荐出装二</button>
+            </div>
+            <div id="build1" class="build-content active">
+              <div class="items">
+                <img src="img/名刀.jpg">
+                <img src="img/末世.jpg">
+                <img src="img/破军.jpg">
+                <img src="img/破晓.jpg">
+                <img src="img/破魔刀.jpg">
+                <img src="img/泣血之刃.jpg">
+              </div>
+            </div>
+            <div id="build2" class="build-content">
+              <div class="items">
+                <img src="img/影刃.jpg">
+                <img src="img/宗师之力.jpg">
+                <img src="img/无尽战刃.jpg">
+                <img src="img/名刀.jpg">
+                <img src="img/破军.jpg">
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3>推荐铭文</h3>
+            <ul>
+              <li>红色：异变 ×10</li>
+              <li>绿色：鹰眼 ×10</li>
+              <li>蓝色：狩猎 ×10</li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <h3>技能加点建议</h3>
+            <p>主升 <b style="color:#d4b26a;">二技能</b>，副升 <b style="color:#d4b26a;">一技能</b>，有大点大。</p>
+          </div>
+
+          <div class="section">
+            <h3>英雄关系</h3>
+            <div class="toggle-buttons">
+              <button class="toggle-btn active" data-target="partner">最佳搭档</button>
+              <button class="toggle-btn" data-target="counter">克制英雄</button>
+              <button class="toggle-btn" data-target="weak">被克制英雄</button>
+            </div>
+
+            <div id="partner" class="relation-content active">
+              <p><b>西施、张飞：</b> 控制与保护并存。</p>
+            </div>
+            <div id="counter" class="relation-content">
+              <p><b>貂蝉、上官婉儿：</b> 控制打断爆发。</p>
+            </div>
+            <div id="weak" class="relation-content">
+              <p><b>鲁班七号、伽罗：</b> 远程压制。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="guide-video">
+          <div class="video-block">
+            <h4>教学视频一</h4>
+            <iframe src="img/wallpaper动态壁纸_2_小羊（主页娶图）_来自小红书网页版.mp4"></iframe>
+          </div>
+          <div class="video-block">
+            <h4>实战演示视频二</h4>
+            <iframe src="img/元女.mp4"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 孙悟空 -->
+    <div class="guide-content" id="wukong">
+      <div class="guide-layout">
+        <div class="guide-info">
+          <div class="section">
+            <h3>推荐出装</h3>
+            <div class="items">
+              <img src="img/外套.jpg">
+              <img src="img/冷静之靴.webp">
+              <img src="img/名刀.jpg">
+              <img src="img/暗影战斧.jpg">
+              <img src="img/破军.jpg">
+              <img src="img/破魔刀.jpg">
+            </div>
+          </div>
+          <div class="section">
+            <h3>推荐铭文</h3>
+            <ul>
+              <li>红色：无双 ×10</li>
+              <li>绿色：鹰眼 ×10</li>
+              <li>蓝色：狩猎 ×10</li>
+            </ul>
+          </div>
+          <div class="section">
+            <h3>技能加点</h3>
+            <p>主升二技能，副升一技能。</p>
+          </div>
+        </div>
+        <div class="guide-video">
+          <div class="video-block">
+            <h4>教学视频</h4>
+            <iframe src="img/元女.mp4"></iframe>
+          </div>
+          <div class="video-block">
+            <h4>高光集锦</h4>
+            <iframe src="img/滕王阁序.mp4"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <script>
+    // 切换英雄攻略
+    document.querySelectorAll('.hero-list img').forEach(img => {
+      img.addEventListener('mouseenter', () => {
+        const heroId = img.dataset.hero;
+        document.querySelectorAll('.guide-content').forEach(c => c.classList.remove('active'));
+        const target = document.getElementById(heroId);
+        if (target) {
+          target.classList.add('active');
+        }
+      });
+    });
+
+
+    // 出装 / 英雄关系按钮切换
+    document.querySelectorAll('.section .toggle-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const parentSection = btn.closest('.section');
+        const allBtns = parentSection.querySelectorAll('.toggle-btn');
+        const allContents = parentSection.querySelectorAll('.build-content, .relation-content');
+        allBtns.forEach(b => b.classList.remove('active'));
+        allContents.forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        const target = parentSection.querySelector('#' + btn.dataset.target);
+        if (target) target.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
